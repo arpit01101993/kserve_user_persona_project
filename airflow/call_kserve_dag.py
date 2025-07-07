@@ -25,11 +25,11 @@ def call_kserve(**context):
         context['ti'].xcom_push(key='kserve_response', value=response.json())
 
     except Exception as e:
-        error_msg = f"🔥 KServe call failed: {str(e)}"
+        error_msg = f"KServe call failed: {str(e)}"
         print(error_msg)
         raise Exception(error_msg)
 
-# ✅ Airflow DAG
+# Airflow DAG
 with DAG(
     dag_id="call_kserve_with_alert",
     start_date=datetime(2024, 1, 1),
