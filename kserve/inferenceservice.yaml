@@ -1,0 +1,17 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: user-persona-recommender
+  annotations:
+    serving.kserve.io/s3-endpoint: s3.amazonaws.com
+    serving.kserve.io/s3-usehttps: "true"
+    serving.kserve.io/s3-region: us-east-1
+    serving.kserve.io/s3-secret: s3-creds
+spec:
+  predictor:
+    sklearn:
+      storageUri: s3://your-bucket/path/to/model.pkl
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
